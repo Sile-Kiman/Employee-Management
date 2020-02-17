@@ -243,7 +243,7 @@ function addEmployee() {
 }
 
 function viewEmplRoleDept() {
-  console.log("Selecting all Employee...\n");
+  console.log("Selecting all Employees...\n");
   connection.query(
     "SELECT emp.id,  emp.first_name, emp.last_name, emp.manager, emp.manager_id, rol.Title, rol.Salary, dept.dept_name FROM employee as emp INNER JOIN dept_role as rol ON emp.role_id = rol.role_id INNER JOIN department as dept ON rol.dept_id = dept.dept_id ORDER BY emp.id", function (err, res) {
       if (err) throw err;  
