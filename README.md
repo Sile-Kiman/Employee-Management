@@ -13,12 +13,12 @@ How does this work/Tested:
 
 
  Deploy URL:
-https://sile-kiman.github.io/Employee-Tracker/.
+https://sile-kiman.github.io/Employee-Management/.
 
  
 Tool used to build my portfolio site.
 1-Msql
-2- Inquire
+2- Inquirer
 3-  Node JS
 4-  npm install
 
@@ -34,8 +34,7 @@ Test:
  
 3-Verify all the record display after all questions had been answered 
 
-![Image of the Site:]
-(https://github.com/Sile-Kiman/Employee-Tracker/blob/master/employee.png)
+![Image of the Site:](https://github.com/Sile-Kiman/Employee-Management/blob/master/viewAllEmployee.PNG)
 
  
 License:
