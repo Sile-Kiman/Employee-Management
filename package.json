@@ -1,0 +1,23 @@
+{
+  "name": "employee-management",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sile-Kiman/Employee-Management.git"
+  },
+  "author": "Sile Kiman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sile-Kiman/Employee-Management/issues"
+  },
+  "homepage": "https://github.com/Sile-Kiman/Employee-Management#readme",
+  "dependencies": {
+    "inquire": "^0.4.8",
+    "mysql": "^2.18.1"
+  }
+}
