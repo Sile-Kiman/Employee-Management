@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/Sile-Kiman/Employee-Management#readme",
   "dependencies": {
+    "console.table": "^0.10.0",
     "inquire": "^0.4.8",
+    "inquirer": "^7.0.4",
     "mysql": "^2.18.1"
   }
 }

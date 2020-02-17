@@ -18,10 +18,10 @@ var connection = mysql.createConnection({
 
 connection.connect(function (err) {
   if (err) throw err;
-  manageEmployee();
+  manageEmployees();
 });
 
-function manageEmployee() {
+function manageEmployees() {
   inquirer
     .prompt({
       name: "answer",
@@ -57,19 +57,18 @@ function manageEmployee() {
         case "View roles":
           viewAllRoles();
           break;
-        case "Update Employee Role":
-          updateEmpRole();
-          break;
-
         case "Add employee":
           addEmployee();
           break;
+          case "Update Employee Role":
+          updateEmpRole();
+          break;  
 
         case "View All Employees":
-          viewAllEmployee();
+          viewAllEmployees();
           break;
         case "View Employees roles and departments":
-          viewEmployees();
+          viewEmplRoleDept();
           break;
         case "Remove Employee":
           deleteEmployee()
@@ -117,7 +116,7 @@ function viewDeptments() {
     "SELECT * FROM department", function (err, res) {
       if (err) throw err;
       console.table(res);
-      connection.end()
+      connection.end();
     });
 }
 //Function to add Employee Role
@@ -152,10 +151,8 @@ function addEmplRole() {
           "Bank Teller",
           "Accountant",
           "Exit"
-
         ]
       },
-
     ]).then(function (answer) {
       console.log(answer)
       connection.query(
@@ -163,24 +160,26 @@ function addEmplRole() {
         { title: answer.title, salary: answer.salary, dept_id: answer.dept_id },
         function (err, res) {
           if (err){
-           console.log("Please make sure the department id you entered exist or  exit and add the department first")
+           console.log("The department id you entered does not exist. Exit and add the department first")
+           connection.end()
            return;
-          } //throw err;
-           viewAllRoles()
-        })
+            
+          }
+           viewAllRoles();
+        });
     });
-}
+};
 
 //Function to view all  Employees Role
 function viewAllRoles() {
-  console.log("Selecting all Departments...\n");
+  console.log("Selecting all roles coloumns...\n");
   connection.query(
     "SELECT * FROM dept_role", function (err, res) {
       if (err) throw err;
-      console.table(res)
-      connection.end()
+      console.table(res);
+      connection.end();
     });
-}
+};
 
 function addEmployee() {
   inquirer
@@ -231,36 +230,38 @@ function addEmployee() {
           manager: answer.manager,
           manager_id: answer.manager_id,
         }, function (err, res) {
-          if (err) throw err;
+          if (err){
+            console.log(" The employee role id entered does not exist. Try again.");
+            connection.end()
+            return;
+          }  
           console.log("Your new employee has been added!");
-           
+          viewEmplRoleDept();
         }
       )
     });
 }
 
-
-function viewEmployees() {
+function viewEmplRoleDept() {
   console.log("Selecting all Employee...\n");
   connection.query(
     "SELECT emp.id,  emp.first_name, emp.last_name, emp.manager, emp.manager_id, rol.Title, rol.Salary, dept.dept_name FROM employee as emp INNER JOIN dept_role as rol ON emp.role_id = rol.role_id INNER JOIN department as dept ON rol.dept_id = dept.dept_id ORDER BY emp.id", function (err, res) {
       if (err) throw err;  
-       console.table(res)
-      connection.end()
-     
-
+       console.table(res);
+      connection.end(); 
     });
 }
 
 //Function to view all Employee
-function viewAllEmployee() {
-  console.log("Selecting all Departments...\n");
+function viewAllEmployees() {
+  console.log("Selecting all employees from Employee's table...\n");
   connection.query(
     "SELECT * FROM employee", function (err, res) {
       if (err) throw err;
-        console.table(res);
-        
+        console.table(res); 
+        connection.end();  
      });
+
 }
 
 //Function to update an Employee Role
@@ -289,8 +290,12 @@ function updateEmpRole() {
             first_name: answer.fname,
 
           }], function (err, res) {
-          if (err) throw err;
-            viewEmployees()
+          if (err){
+            console.log("The employee role id entered does not exist. Try again");
+            connection.end()
+            return;
+          }  
+          viewEmplRoleDept();
           }
       )
     });
@@ -309,12 +314,15 @@ function deleteEmployee() {
     ]).then(function (answer) {
       connection.query(
         "DELETE FROM employee WHERE ?",
-        { id: answer.emp_id }
+        { id: answer.emp_id },
 
-        , function (err, res) {
-           if (err) throw err;
-          viewEmployees();
-
+        function (err, res) {
+          if (err){
+            console.log("The employee id entered does not exist. Try again.");
+            connection.end()
+            return;
+          }
+          viewEmplRoleDept();
         }
       )
     });
