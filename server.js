@@ -116,7 +116,8 @@ function viewDeptments() {
     "SELECT * FROM department", function (err, res) {
       if (err) throw err;
       console.table(res);
-      connection.end();
+      manageEmployees();
+       
     });
 }
 //Function to add Employee Role
@@ -160,8 +161,8 @@ function addEmplRole() {
         { title: answer.title, salary: answer.salary, dept_id: answer.dept_id },
         function (err, res) {
           if (err){
-           console.log("The department id you entered does not exist. Exit and add the department first")
-           connection.end()
+           console.log("The department id you entered does not exist. Try again.")
+           connection.end();
            return;
             
           }
@@ -177,7 +178,8 @@ function viewAllRoles() {
     "SELECT * FROM dept_role", function (err, res) {
       if (err) throw err;
       console.table(res);
-      connection.end();
+      manageEmployees();
+
     });
 };
 
@@ -248,7 +250,8 @@ function viewEmplRoleDept() {
     "SELECT emp.id,  emp.first_name, emp.last_name, emp.manager, emp.manager_id, rol.Title, rol.Salary, dept.dept_name FROM employee as emp INNER JOIN dept_role as rol ON emp.role_id = rol.role_id INNER JOIN department as dept ON rol.dept_id = dept.dept_id ORDER BY emp.id", function (err, res) {
       if (err) throw err;  
        console.table(res);
-      connection.end(); 
+      manageEmployees();
+
     });
 }
 
@@ -259,7 +262,8 @@ function viewAllEmployees() {
     "SELECT * FROM employee", function (err, res) {
       if (err) throw err;
         console.table(res); 
-        connection.end();  
+      manageEmployees();
+
      });
 
 }
