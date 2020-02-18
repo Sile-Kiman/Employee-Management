@@ -20,7 +20,6 @@ USE   Employee_DB;
   Title VARCHAR(30) NOT NULL, -- hold role title
   Salary DECIMAL(10, 2) NOT NULL, -- hold role salaries
   dept_id INT NULL,
-
 CONSTRAINT  dept_role_fk_ FOREIGN KEY(dept_id) REFERENCES department(dept_id)   -- hold role title
 ON UPDATE CASCADE ON DELETE CASCADE  
 );
@@ -43,3 +42,4 @@ CREATE TABLE employee(
  
 USE   Employee_DB;
 SELECT * FROM employee;
+
