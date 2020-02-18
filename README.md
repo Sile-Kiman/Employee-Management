@@ -34,7 +34,7 @@ Test:
  
 3-Verify all the record display after all questions had been answered 
 
-![Image of the Site:](https://github.com/Sile-Kiman/Employee-Management/blob/master/viewAllEmployee.PNG)
+![Image of the Site:](https://github.com/Sile-Kiman/Employee-Management/blob/master/viewAllEmployees.PNG)
 
  
 License:
