@@ -1,9 +1,9 @@
--- Insert Value into Department column
+-- Insert Value into Department table
 USE   Employee_DB;  
 INSERT INTO department(dept_name) VALUE("Humain Resources");
 INSERT INTO department(dept_name) VALUE("Information Technology");
 
--- Insert into  dept role
+-- Insert into  dept role table
 INSERT INTO dept_role(Title, Salary, dept_id)  VALUE("HR manager", 85000, 1);
 INSERT INTO dept_role(Title, Salary, dept_id)  VALUE("Business Analyst", 85000, 2);
 

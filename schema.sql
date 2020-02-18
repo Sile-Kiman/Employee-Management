@@ -37,8 +37,7 @@ CREATE TABLE employee(
   role_id INT NULL ,-- hold reference to role employee has
   manager  VARCHAR(50)  NULL,
   manager_id INT NULL, -- hold reference to another employee that manager of the current employee
-  CONSTRAINT  employee_fk_1 FOREIGN KEY(role_id) REFERENCES dept_role (role_id),
-  CONSTRAINT  employee_fk_2 FOREIGN KEY(manager_id) REFERENCES employee (id)-- hold role title
+  CONSTRAINT  employee_fk_1 FOREIGN KEY(role_id) REFERENCES dept_role (role_id)
   ON UPDATE CASCADE ON DELETE CASCADE  
 );
  
